@@ -123,11 +123,33 @@ function PhoneIcon() {
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    event.currentTarget.reset();
-    setSubmitted(true);
+    if (submitting) return;
+    const form = event.currentTarget;
+    const fields = Object.fromEntries(new FormData(form).entries());
+    setSubmitting(true);
+    setSubmitError("");
+    try {
+      const response = await fetch("/api/appointments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(fields),
+      });
+      if (!response.ok) {
+        const result = await response.json().catch(() => ({}));
+        throw new Error(result.error || "Could not send your request. Please try again.");
+      }
+      form.reset();
+      setSubmitted(true);
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : "Could not send your request. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -642,11 +664,13 @@ src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fi
                     />
                   </label>
 
+                  {submitError && <p role="alert" className="mt-5 text-sm text-red-700">{submitError}</p>}
                   <button
                     type="submit"
-                    className="mt-6 inline-flex w-full items-center justify-center gap-3 rounded-full bg-[#176b5b] px-7 py-4 font-bold text-white transition hover:bg-[#12594c]"
+                    disabled={submitting}
+                    className="mt-6 inline-flex w-full items-center justify-center gap-3 rounded-full bg-[#176b5b] px-7 py-4 font-bold text-white transition hover:bg-[#12594c] disabled:cursor-wait disabled:opacity-60"
                   >
-                    Send appointment request
+                    {submitting ? "Sending request…" : "Send appointment request"}
                     <ArrowIcon />
                   </button>
 
