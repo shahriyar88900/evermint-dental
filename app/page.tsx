@@ -367,7 +367,7 @@ src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fi
         <div className="mx-auto grid max-w-7xl gap-14 px-5 py-24 sm:px-8 lg:grid-cols-2 lg:items-center">
           <div className="relative">
             <img
-             src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=1300&q=85"
+             src="https://plus.unsplash.com/premium_photo-1661768526823-8e7941279818?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Dentist providing careful treatment to a patient"
               className="h-[520px] w-full rounded-[2rem] object-cover"
             />
