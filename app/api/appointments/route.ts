@@ -36,6 +36,7 @@ export async function POST(request: Request) {
   const date = get("date");
   const service = get("service");
   const message = get("message");
+  const requestId = get("requestId");
   const day = new Date(`${date}T00:00:00Z`);
   const today = new Date();
   const todayUtc = Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate());
@@ -44,7 +45,8 @@ export async function POST(request: Request) {
       email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ||
       !/^\d{4}-\d{2}-\d{2}$/.test(date) || !Number.isFinite(day.getTime()) ||
       day.toISOString().slice(0, 10) !== date || day.getTime() < todayUtc ||
-      !services.has(service) || message.length > 500) {
+      !services.has(service) || message.length > 500 ||
+      !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(requestId)) {
     return NextResponse.json({ error: "Please check the form fields and preferred date." }, { status: 400 });
   }
 
@@ -63,11 +65,13 @@ export async function POST(request: Request) {
         "Content-Type": "application/json",
         Prefer: "return=minimal",
       },
-      body: JSON.stringify({ name, phone, email, preferred_date: date, service, message: message || null }),
+      body: JSON.stringify({ id: requestId, name, phone, email, preferred_date: date, service, message: message || null }),
       cache: "no-store",
       signal: AbortSignal.timeout(10000),
     });
     if (!result.ok) {
+      // A retry after a lost response may find the request already saved.
+      if (result.status === 409) return NextResponse.json({ success: true }, { status: 200 });
       console.error("Appointment insert failed:", result.status);
       throw new Error("Database insert failed");
     }

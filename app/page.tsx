@@ -2,7 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element */
 
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 
 const services = [
   {
@@ -125,25 +125,31 @@ export default function Home() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const pendingRequest = useRef<{ payload: string; id: string } | null>(null);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (submitting) return;
     const form = event.currentTarget;
     const fields = Object.fromEntries(new FormData(form).entries());
+    const payload = JSON.stringify(fields);
+    if (pendingRequest.current?.payload !== payload) {
+      pendingRequest.current = { payload, id: crypto.randomUUID() };
+    }
     setSubmitting(true);
     setSubmitError("");
     try {
       const response = await fetch("/api/appointments", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(fields),
+        body: JSON.stringify({ ...fields, requestId: pendingRequest.current.id }),
       });
       if (!response.ok) {
         const result = await response.json().catch(() => ({}));
         throw new Error(result.error || "Could not send your request. Please try again.");
       }
       form.reset();
+      pendingRequest.current = null;
       setSubmitted(true);
     } catch (error) {
       setSubmitError(error instanceof Error ? error.message : "Could not send your request. Please try again.");
