@@ -35,43 +35,43 @@ const testimonials = [
   {
     quote:
       "The entire team made me feel comfortable from the moment I arrived. The experience was calm, clear, and genuinely caring.",
-    name: "Olivia M.",
-    service: "Preventive care patient",
+    name: "Sample review 01",
+    service: "Illustrative copy — not a patient testimonial",
   },
   {
     quote:
       "I finally found a dental practice that explains every option without pressure. My new smile feels completely natural.",
-    name: "Daniel R.",
-    service: "Cosmetic dentistry patient",
+    name: "Sample review 02",
+    service: "Illustrative copy — not a patient testimonial",
   },
   {
     quote:
       "Booking was simple, the office was beautiful, and everyone respected my time. I highly recommend Evermint Dental.",
-    name: "Sophia L.",
-    service: "Restorative care patient",
+    name: "Sample review 03",
+    service: "Illustrative copy — not a patient testimonial",
   },
 ];
 
 const faqs = [
   {
-    question: "Are you accepting new patients?",
+    question: "Can I request an appointment here?",
     answer:
-      "Yes. Evermint Dental welcomes new patients of all ages. Submit an appointment request and our team will contact you to confirm availability.",
+      "This is a portfolio demo. Submit a request with fictional details and an @example.invalid email to try the flow. No real appointments are scheduled.",
   },
   {
-    question: "Do you offer emergency appointments?",
+    question: "What happens after a request is sent?",
     answer:
-      "We reserve limited same-day availability for urgent dental concerns. Call the practice directly for the fastest assistance.",
+      "The demo stores a pending request in a private database. A real clinic would contact a patient before confirming availability.",
   },
   {
-    question: "What insurance plans do you accept?",
+    question: "Are the listed services and photos real?",
     answer:
-      "We work with many major PPO plans. Contact our team before your visit and we will help you understand your available benefits.",
+      "They illustrate a possible dental website. Services, people, photography, and practice details must be replaced and verified by the client before launch.",
   },
   {
-    question: "Do you offer payment options?",
+    question: "Should I include health information in the form?",
     answer:
-      "Yes. Flexible payment arrangements are available for qualifying treatment plans. Our team will explain the options clearly before treatment begins.",
+      "No. Use fictional contact details only and never include symptoms, medical history, or other confidential information in this demo.",
   },
 ];
 
@@ -101,21 +101,6 @@ function CheckIcon() {
       aria-hidden="true"
     >
       <path d="m5 12 4 4L19 6" />
-    </svg>
-  );
-}
-
-function PhoneIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      className="h-5 w-5"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      aria-hidden="true"
-    >
-      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.33 1.84.56 2.8.69A2 2 0 0 1 22 16.92Z" />
     </svg>
   );
 }
@@ -159,7 +144,10 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[#f7fbf9] text-[#173b36]">
+    <main className="min-h-screen overflow-x-clip bg-[#f7fbf9] text-[#173b36]">
+      <div className="bg-[#173b36] px-5 py-2 text-center text-xs font-semibold text-white sm:text-sm">
+        Portfolio demo · Fictional clinic and reviews · Use dummy details only · No real appointments
+      </div>
       <header className="sticky top-0 z-50 border-b border-[#173b36]/10 bg-[#f7fbf9]/90 backdrop-blur-xl">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8">
           <a href="#" className="flex items-center gap-3">
@@ -193,30 +181,18 @@ export default function Home() {
 
           <div className="flex items-center gap-3">
             <a
-              href="tel:+15550142088"
-              className="hidden items-center gap-2 text-sm font-semibold sm:flex"
-            >
-              <PhoneIcon />
-              (555) 014-2088
-            </a>
-
-            <a
               href="#appointment"
               className="hidden rounded-full bg-[#173b36] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#176b5b] sm:inline-flex"
             >
-              Book a visit
+              Try the demo form
             </a>
 
             <button
               type="button"
               aria-label="Toggle navigation"
               aria-expanded={menuOpen}
-              onPointerUp={() => setMenuOpen((current) => !current)}
-              onClick={(event) => {
-               if (event.detail === 0) {
-              setMenuOpen((current) => !current);
-   }
-}}
+              aria-controls="mobile-navigation"
+              onClick={() => setMenuOpen((current) => !current)}
               className="grid h-11 w-11 place-items-center rounded-full border border-[#173b36]/15 lg:hidden"
             >
               <span className="text-xl">{menuOpen ? "×" : "☰"}</span>
@@ -225,7 +201,7 @@ export default function Home() {
         </div>
 
         {menuOpen && (
-          <nav className="border-t border-[#173b36]/10 bg-[#f7fbf9] px-5 py-5 lg:hidden">
+          <nav id="mobile-navigation" className="border-t border-[#173b36]/10 bg-[#f7fbf9] px-5 py-5 lg:hidden">
             <div className="mx-auto flex max-w-7xl flex-col gap-4 font-semibold">
               {["services", "about", "reviews", "contact"].map((item) => (
                 <a
@@ -242,7 +218,7 @@ export default function Home() {
                 onClick={() => setMenuOpen(false)}
                 className="rounded-full bg-[#173b36] px-5 py-3 text-center text-white"
               >
-                Book a visit
+                Try the demo form
               </a>
             </div>
           </nav>
@@ -257,7 +233,7 @@ export default function Home() {
           <div>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#176b5b]/15 bg-white px-4 py-2 text-sm font-semibold text-[#176b5b] shadow-sm">
               <span className="h-2 w-2 rounded-full bg-[#e17b5f]" />
-              Now welcoming new patients
+              Dental website portfolio concept
             </div>
 
             <h1 className="max-w-3xl text-5xl font-semibold leading-[1.02] tracking-[-0.045em] text-[#12322d] sm:text-6xl lg:text-7xl">
@@ -304,7 +280,8 @@ export default function Home() {
           <div className="relative">
             <div className="overflow-hidden rounded-[2.25rem] bg-[#dceee8] p-3 shadow-[0_30px_90px_rgba(23,59,54,0.16)]">
               <img
-src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1400&q=85"                alt="Dentist providing comfortable care to a patient"
+                src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1400&q=85"
+                alt="Stock photograph illustrating a dental visit"
                 className="h-[520px] w-full rounded-[1.75rem] object-cover sm:h-[620px]"
               />
             </div>
@@ -312,16 +289,16 @@ src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fi
             <div className="absolute -bottom-6 -left-3 max-w-[230px] rounded-3xl bg-white p-5 shadow-2xl sm:-left-10">
               <div className="flex text-[#f2a45d]">★★★★★</div>
               <p className="mt-2 text-sm font-bold text-[#173b36]">
-                4.9 average patient rating
+                Review layout preview
               </p>
               <p className="mt-1 text-xs text-[#68817c]">
-                Based on verified patient feedback
+                Sample content, not real patient feedback
               </p>
             </div>
 
             <div className="absolute -right-3 top-8 rounded-3xl bg-[#173b36] p-5 text-white shadow-2xl sm:-right-8">
-              <p className="text-3xl font-semibold">1,200+</p>
-              <p className="mt-1 text-xs text-white/70">smiles cared for</p>
+              <p className="text-xl font-semibold">Built for clarity</p>
+              <p className="mt-1 text-xs text-white/70">Responsive concept design</p>
             </div>
           </div>
         </div>
@@ -331,23 +308,21 @@ src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fi
         <div className="mx-auto grid max-w-7xl gap-8 px-5 py-9 text-center sm:grid-cols-3 sm:px-8">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#78908b]">
-              Convenient hours
+              Flexible layout
             </p>
-            <p className="mt-2 font-bold">Monday–Saturday</p>
+            <p className="mt-2 font-bold">Adaptable office hours</p>
           </div>
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#78908b]">
-              Location
+              Practice details
             </p>
-            <p className="mt-2 font-bold">Central Austin, Texas</p>
+            <p className="mt-2 font-bold">Add your clinic location</p>
           </div>
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#78908b]">
-              Call our team
+              Contact section
             </p>
-            <a className="mt-2 block font-bold" href="tel:+15550142088">
-              (555) 014-2088
-            </a>
+            <p className="mt-2 font-bold">Add your clinic phone</p>
           </div>
         </div>
       </section>
@@ -395,8 +370,8 @@ src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fi
         <div className="mx-auto grid max-w-7xl gap-14 px-5 py-24 sm:px-8 lg:grid-cols-2 lg:items-center">
           <div className="relative">
             <img
-             src="https://plus.unsplash.com/premium_photo-1661768526823-8e7941279818?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="Dentist providing careful treatment to a patient"
+              src="https://plus.unsplash.com/premium_photo-1661768526823-8e7941279818?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Stock photograph illustrating dental care"
               className="h-[520px] w-full rounded-[2rem] object-cover"
             />
             <div className="absolute bottom-5 left-5 right-5 rounded-2xl bg-white/95 p-5 text-[#173b36] backdrop-blur">
@@ -412,12 +387,12 @@ src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fi
               Why Evermint
             </p>
             <h2 className="mt-4 text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">
-              Clinical excellence without the clinical feeling.
+              A welcoming approach to dental website design.
             </h2>
             <p className="mt-6 text-lg leading-8 text-white/70">
-              We created Evermint Dental to make every appointment feel more
-              comfortable, informed, and human. You will always understand your
-              options before making a decision.
+              This concept shows how a practice could present services, explain
+              its approach, and collect appointment requests. A client would
+              provide approved clinical information before launch.
             </p>
 
             <div className="mt-9 space-y-5">
@@ -440,7 +415,7 @@ src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fi
               href="#appointment"
               className="mt-10 inline-flex items-center gap-3 rounded-full bg-[#f0a58e] px-7 py-4 font-bold text-[#173b36] transition hover:bg-[#f7bca9]"
             >
-              Meet your dental team
+              Try the appointment form
               <ArrowIcon />
             </a>
           </div>
@@ -452,30 +427,28 @@ src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fi
           <div className="overflow-hidden rounded-[2rem] bg-[#e6f3ee]">
             <img
               src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=1100&q=85"
-              alt="Dr. Maya Carter"
+              alt="Stock portrait used to illustrate a team profile layout"
               className="h-[560px] w-full object-cover object-top"
             />
           </div>
 
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#e17b5f]">
-              Meet your dentist
+              Team profile example
             </p>
             <h2 className="mt-4 text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">
-              Dr. Maya Carter, DDS
+              Introduce your dental team
             </h2>
             <p className="mt-3 text-lg font-semibold text-[#176b5b]">
-              General and cosmetic dentist
+              Add verified names and credentials before launch
             </p>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-[#5d7670]">
-              Dr. Carter believes excellent dentistry begins with listening.
-              Her calm, educational approach helps patients feel confident and
-              involved throughout their care.
+              This space can introduce a clinician with their approved biography,
+              specialties, and a photo supplied with permission.
             </p>
             <p className="mt-5 max-w-2xl leading-7 text-[#5d7670]">
-              She combines evidence-based treatment with modern digital
-              technology to create comfortable experiences and natural-looking
-              results.
+              The image is stock photography. Replace it with the clinic&apos;s
+              real team and confirm every professional qualification.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -500,10 +473,10 @@ src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fi
         <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8">
           <div className="text-center">
             <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#e17b5f]">
-              Patient stories
+              Sample review cards
             </p>
             <h2 className="mx-auto mt-4 max-w-2xl text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">
-              Care that patients feel good about.
+              A layout for authentic patient feedback.
             </h2>
           </div>
 
@@ -540,32 +513,25 @@ src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fi
                 Ready for a healthier, more confident smile?
               </h2>
               <p className="mt-6 leading-7 text-[#614e48]">
-                Tell us how to reach you and our friendly team will contact you
-                to confirm a convenient appointment time.
+                Try the request flow with fictional details. This portfolio
+                website does not book appointments or contact patients.
               </p>
 
               <div className="mt-9 space-y-5">
                 <div>
-                  <p className="text-sm font-bold text-[#173b36]">Call us</p>
-                  <a
-                    href="tel:+15550142088"
-                    className="mt-1 block text-lg font-semibold"
-                  >
-                    (555) 014-2088
-                  </a>
+                  <p className="text-sm font-bold text-[#173b36]">Phone</p>
+                  <p className="mt-1 text-[#614e48]">Your clinic phone goes here</p>
                 </div>
                 <div>
                   <p className="text-sm font-bold text-[#173b36]">Visit us</p>
                   <p className="mt-1 text-[#614e48]">
-                    241 Cedar Lane, Austin, TX 78701
+                    Your clinic address goes here
                   </p>
                 </div>
                 <div>
                   <p className="text-sm font-bold text-[#173b36]">Hours</p>
                   <p className="mt-1 text-[#614e48]">
-                    Mon–Fri: 8:00 AM–6:00 PM
-                    <br />
-                    Saturday: 9:00 AM–2:00 PM
+                    Add verified office hours
                   </p>
                 </div>
               </div>
@@ -582,8 +548,8 @@ src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fi
                       Thank you for reaching out.
                     </h3>
                     <p className="mx-auto mt-3 max-w-md leading-7 text-[#627872]">
-                      Your appointment request has been received. Our team will
-                      contact you shortly to confirm the details.
+                      Your demo request was saved. No appointment is booked and
+                      nobody will contact you from this portfolio site.
                     </p>
                     <button
                       type="button"
@@ -625,7 +591,7 @@ src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fi
                         required
                         name="email"
                         type="email"
-                        placeholder="you@example.com"
+                        placeholder="demo@example.invalid"
                         className="mt-2 w-full rounded-2xl border border-[#173b36]/15 bg-[#f9fbfa] px-4 py-3.5 font-normal outline-none transition focus:border-[#176b5b]"
                       />
                     </label>
@@ -665,7 +631,7 @@ src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fi
                     <textarea
                       name="message"
                       rows={4}
-                      placeholder="How can our team help? Please do not include private medical information."
+                      placeholder="Demo note only. Do not include medical information."
                       className="mt-2 w-full resize-none rounded-2xl border border-[#173b36]/15 bg-[#f9fbfa] px-4 py-3.5 font-normal outline-none transition focus:border-[#176b5b]"
                     />
                   </label>
@@ -681,8 +647,8 @@ src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fi
                   </button>
 
                   <p className="mt-4 text-center text-xs leading-5 text-[#718782]">
-                    This form is for scheduling requests only. Please do not
-                    submit confidential medical information.
+                    Demo only: use a fictional name and phone number with an
+                    @example.invalid email. Never submit real or medical information.
                   </p>
                 </form>
               )}
@@ -732,8 +698,8 @@ src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fi
                 <span className="text-lg font-bold">Evermint Dental</span>
               </div>
               <p className="mt-5 max-w-xs leading-7 text-white/60">
-                Modern, compassionate dental care for every stage of your
-                smile.
+                Portfolio concept for a dental practice. All people,
+                testimonials, and practice details are illustrative.
               </p>
             </div>
 
@@ -742,49 +708,31 @@ src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fi
               <div className="mt-5 flex flex-col gap-3 text-sm text-white/60">
                 <a href="#services">Services</a>
                 <a href="#about">About our practice</a>
-                <a href="#reviews">Patient reviews</a>
-                <a href="#appointment">Request an appointment</a>
+                <a href="#reviews">Sample review layout</a>
+                <a href="#appointment">Try the demo form</a>
               </div>
             </div>
 
             <div>
-              <p className="font-bold">Contact</p>
+              <p className="font-bold">Practice details</p>
               <div className="mt-5 space-y-3 text-sm leading-6 text-white/60">
-                <p>241 Cedar Lane, Austin, TX 78701</p>
-                <a className="block" href="tel:+15550142088">
-                  (555) 014-2088
-                </a>
-                <a className="block" href="mailto:hello@evermintdental.com">
-                  hello@evermintdental.com
-                </a>
+                <p>Add your verified address</p>
+                <p>Add your clinic phone and email</p>
               </div>
             </div>
 
             <div>
-              <p className="font-bold">Office hours</p>
+              <p className="font-bold">Before client launch</p>
               <div className="mt-5 space-y-3 text-sm text-white/60">
-                <div className="flex justify-between">
-                  <span>Mon–Fri</span>
-                  <span>8:00–6:00</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Saturday</span>
-                  <span>9:00–2:00</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Sunday</span>
-                  <span>Closed</span>
-                </div>
+                <p>Verify services, credentials, hours, and patient reviews.</p>
+                <p>Add approved privacy and accessibility pages.</p>
               </div>
             </div>
           </div>
 
           <div className="flex flex-col justify-between gap-4 pt-7 text-xs text-white/45 sm:flex-row">
             <p>© 2026 Evermint Dental. Portfolio concept website.</p>
-            <div className="flex gap-5">
-              <a href="#">Privacy</a>
-              <a href="#">Accessibility</a>
-            </div>
+            <p>Demo data only. No real appointment booking.</p>
           </div>
         </div>
       </footer>

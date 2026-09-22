@@ -49,6 +49,10 @@ export async function POST(request: Request) {
       !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(requestId)) {
     return NextResponse.json({ error: "Please check the form fields and preferred date." }, { status: 400 });
   }
+  // The public portfolio is a demo. Do not accept real patient contact details.
+  if (!email.toLowerCase().endsWith("@example.invalid")) {
+    return NextResponse.json({ error: "Demo only: use a test email ending in @example.invalid." }, { status: 400 });
+  }
 
   const url = process.env.SUPABASE_URL;
   const key = process.env.SUPABASE_SECRET_KEY;

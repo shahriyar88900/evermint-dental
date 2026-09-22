@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Evermint Dental | Modern Family Dentistry in Austin",
+  title: "Evermint Dental | Dental Website Demo",
   description:
-    "Comfortable, modern dental care for the whole family. Explore preventive, cosmetic, restorative, and emergency dental services at Evermint Dental.",
+    "A portfolio concept for a dental practice website. Explore its responsive design and demo appointment request flow. Not a real dental clinic.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

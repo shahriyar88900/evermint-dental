@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Evermint Dental — portfolio demo
 
-## Getting Started
+A responsive Next.js 16 dental website concept with a Supabase-backed **demo appointment request** form. Evermint Dental is fictional. Photos, review copy, services, and team profiles illustrate a layout; this repository is not a clinic website or patient portal.
 
-First, run the development server:
+## Run locally
 
 ```bash
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`. The form needs a Supabase project with `supabase/appointment_requests.sql` applied, plus these server-side variables in `.env.local`:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+SUPABASE_URL=https://YOUR_PROJECT_REF.supabase.co
+SUPABASE_SECRET_KEY=YOUR_SERVER_SECRET_KEY
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Never commit the key or prefix it with `NEXT_PUBLIC_`. On Vercel, add both variables to the Production environment and redeploy. `npm run lint` and `npm run build` check the code.
 
-## Learn More
+## Demo constraints
 
-To learn more about Next.js, take a look at the following resources:
+- The public form accepts only fictional email addresses ending in `@example.invalid`. It records a request as `pending`; it never confirms a booking or sends an email.
+- The table has RLS enabled, no public policies, and INSERT permission only for the private server role. Staff access, notification workflows, and operational controls are not included.
+- Before using this for a real clinic, replace all illustrative content with approved details and authentic consented reviews, implement clinic-specific privacy and retention practices, access controls, abuse protection, backups, and applicable legal requirements. Review the demo-only email restriction in the API route as part of that separate launch process.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+See [DAY4_SETUP.md](DAY4_SETUP.md) for the database setup and test workflow.
