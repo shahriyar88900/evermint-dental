@@ -327,7 +327,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="services" className="mx-auto max-w-7xl px-5 py-24 sm:px-8">
+      <section id="services" className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-24">
         <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#e17b5f]">
@@ -343,21 +343,16 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="mt-14 grid gap-5 md:grid-cols-2">
+        <div className="mt-10 grid gap-4 sm:mt-14 sm:gap-5 md:grid-cols-2">
           {services.map((service) => (
             <article
               key={service.title}
-              className="group rounded-[2rem] border border-[#173b36]/10 bg-white p-7 transition duration-300 hover:-translate-y-1 hover:border-[#176b5b]/30 hover:shadow-xl"
+              className="rounded-[2rem] border border-[#173b36]/10 bg-white p-6 sm:p-7"
             >
-              <div className="flex items-start justify-between gap-5">
-                <span className="text-sm font-bold text-[#e17b5f]">
-                  {service.number}
-                </span>
-                <span className="grid h-11 w-11 place-items-center rounded-full bg-[#edf7f3] text-[#176b5b] transition group-hover:bg-[#176b5b] group-hover:text-white">
-                  <ArrowIcon />
-                </span>
-              </div>
-              <h3 className="mt-10 text-2xl font-semibold">{service.title}</h3>
+              <span className="text-sm font-bold text-[#e17b5f]">
+                {service.number}
+              </span>
+              <h3 className="mt-6 text-2xl font-semibold sm:mt-10">{service.title}</h3>
               <p className="mt-3 max-w-lg leading-7 text-[#637a75]">
                 {service.description}
               </p>
@@ -367,12 +362,12 @@ export default function Home() {
       </section>
 
       <section id="about" className="bg-[#173b36] text-white">
-        <div className="mx-auto grid max-w-7xl gap-14 px-5 py-24 sm:px-8 lg:grid-cols-2 lg:items-center">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:gap-14 sm:px-8 sm:py-24 lg:grid-cols-2 lg:items-center">
           <div className="relative">
             <img
-              src="https://plus.unsplash.com/premium_photo-1661768526823-8e7941279818?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="Stock photograph illustrating dental care"
-              className="h-[520px] w-full rounded-[2rem] object-cover"
+              src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1200&q=85"
+              alt="Stock photograph of a dental professional reviewing dental imaging"
+              className="h-[440px] w-full rounded-[2rem] object-cover sm:h-[520px]"
             />
             <div className="absolute bottom-5 left-5 right-5 rounded-2xl bg-white/95 p-5 text-[#173b36] backdrop-blur">
               <p className="font-bold">A calmer kind of dental visit</p>
@@ -422,7 +417,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-24 sm:px-8">
+      <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-24">
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div className="overflow-hidden rounded-[2rem] bg-[#e6f3ee]">
             <img
@@ -470,7 +465,7 @@ export default function Home() {
       </section>
 
       <section id="reviews" className="bg-[#edf7f3]">
-        <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8">
+        <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-24">
           <div className="text-center">
             <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#e17b5f]">
               Sample review cards
@@ -502,7 +497,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="appointment" className="mx-auto max-w-7xl px-5 py-24 sm:px-8">
+      <section id="appointment" className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-24">
         <div className="overflow-hidden rounded-[2.5rem] bg-[#f1c4b5]">
           <div className="grid lg:grid-cols-[0.85fr_1.15fr]">
             <div className="p-8 sm:p-12 lg:p-14">
@@ -657,7 +652,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-4xl px-5 pb-24 sm:px-8">
+      <section className="mx-auto max-w-4xl px-5 pb-16 sm:px-8 sm:pb-24">
         <div className="text-center">
           <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#e17b5f]">
             Frequently asked questions

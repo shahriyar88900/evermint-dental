@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { checkBotId } from "botid/server";
 
 const services = new Set([
   "Preventive care", "Cosmetic dentistry", "Restorative care",
@@ -52,6 +53,17 @@ export async function POST(request: Request) {
   // The public portfolio is a demo. Do not accept real patient contact details.
   if (!email.toLowerCase().endsWith("@example.invalid")) {
     return NextResponse.json({ error: "Demo only: use a test email ending in @example.invalid." }, { status: 400 });
+  }
+
+  // Verify before reaching the private database; direct scripted requests fail on Vercel.
+  try {
+    const verification = await checkBotId();
+    if (verification.isBot) {
+      return NextResponse.json({ error: "Automated requests are not allowed." }, { status: 403 });
+    }
+  } catch {
+    console.error("Bot verification unavailable.");
+    return NextResponse.json({ error: "Request service is temporarily unavailable." }, { status: 503 });
   }
 
   const url = process.env.SUPABASE_URL;
