@@ -145,6 +145,12 @@ export default function Home() {
 
   return (
     <main className="min-h-screen overflow-x-clip bg-[#f7fbf9] text-[#173b36]">
+      <a
+        href="#main-content"
+        className="fixed left-4 top-4 z-[100] -translate-y-24 rounded-full bg-white px-5 py-3 font-bold text-[#173b36] shadow-xl transition focus:translate-y-0"
+      >
+        Skip to main content
+      </a>
       <div className="bg-[#173b36] px-5 py-2 text-center text-xs font-semibold text-white sm:text-sm">
         Portfolio demo · Fictional clinic and reviews · Use dummy details only · No real appointments
       </div>
@@ -189,7 +195,7 @@ export default function Home() {
 
             <button
               type="button"
-              aria-label="Toggle navigation"
+              aria-label={menuOpen ? "Close navigation" : "Open navigation"}
               aria-expanded={menuOpen}
               aria-controls="mobile-navigation"
               onClick={() => setMenuOpen((current) => !current)}
@@ -225,7 +231,7 @@ export default function Home() {
         )}
       </header>
 
-      <section className="relative">
+      <section id="main-content" tabIndex={-1} className="relative scroll-mt-28">
         <div className="absolute -left-32 top-32 h-96 w-96 rounded-full bg-[#bfe3d6]/40 blur-3xl" />
         <div className="absolute -right-32 top-0 h-96 w-96 rounded-full bg-[#f4c9b9]/35 blur-3xl" />
 
@@ -236,7 +242,7 @@ export default function Home() {
               Dental website portfolio concept
             </div>
 
-            <h1 className="max-w-3xl text-5xl font-semibold leading-[1.02] tracking-[-0.045em] text-[#12322d] sm:text-6xl lg:text-7xl">
+            <h1 className="max-w-3xl text-4xl font-semibold leading-[1.04] tracking-[-0.045em] text-[#12322d] sm:text-6xl lg:text-7xl">
               Thoughtful dental care for a{" "}
               <span className="text-[#e17b5f]">healthier smile.</span>
             </h1>
@@ -282,7 +288,7 @@ export default function Home() {
               <img
                 src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1400&q=85"
                 alt="Stock photograph illustrating a dental visit"
-                className="h-[520px] w-full rounded-[1.75rem] object-cover sm:h-[620px]"
+                className="h-[440px] w-full rounded-[1.75rem] object-cover sm:h-[620px]"
               />
             </div>
 
@@ -327,7 +333,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="services" className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-24">
+      <section id="services" className="mx-auto max-w-7xl scroll-mt-28 px-5 py-16 sm:px-8 sm:py-24">
         <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#e17b5f]">
@@ -361,7 +367,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about" className="bg-[#173b36] text-white">
+      <section id="about" className="scroll-mt-28 bg-[#173b36] text-white">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:gap-14 sm:px-8 sm:py-24 lg:grid-cols-2 lg:items-center">
           <div className="relative">
             <img
@@ -423,7 +429,7 @@ export default function Home() {
             <img
               src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=1100&q=85"
               alt="Stock portrait used to illustrate a team profile layout"
-              className="h-[560px] w-full object-cover object-top"
+              className="h-[460px] w-full object-cover object-top sm:h-[560px]"
             />
           </div>
 
@@ -464,7 +470,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="reviews" className="bg-[#edf7f3]">
+      <section id="reviews" className="scroll-mt-28 bg-[#edf7f3]">
         <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-24">
           <div className="text-center">
             <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#e17b5f]">
@@ -497,7 +503,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="appointment" className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-24">
+      <section id="appointment" className="mx-auto max-w-7xl scroll-mt-28 px-5 py-16 sm:px-8 sm:py-24">
         <div className="overflow-hidden rounded-[2.5rem] bg-[#f1c4b5]">
           <div className="grid lg:grid-cols-[0.85fr_1.15fr]">
             <div className="p-8 sm:p-12 lg:p-14">
@@ -534,7 +540,7 @@ export default function Home() {
 
             <div className="m-3 rounded-[2rem] bg-white p-7 sm:m-5 sm:p-10">
               {submitted ? (
-                <div className="grid min-h-[480px] place-items-center text-center">
+                <div role="status" aria-live="polite" className="grid min-h-[480px] place-items-center text-center">
                   <div>
                     <span className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-[#dff2eb] text-[#176b5b]">
                       <CheckIcon />
@@ -564,6 +570,9 @@ export default function Home() {
                         required
                         name="name"
                         type="text"
+                        autoComplete="name"
+                        minLength={2}
+                        maxLength={100}
                         placeholder="Your full name"
                         className="mt-2 w-full rounded-2xl border border-[#173b36]/15 bg-[#f9fbfa] px-4 py-3.5 font-normal outline-none transition focus:border-[#176b5b]"
                       />
@@ -575,6 +584,10 @@ export default function Home() {
                         required
                         name="phone"
                         type="tel"
+                        autoComplete="tel"
+                        inputMode="tel"
+                        minLength={7}
+                        maxLength={25}
                         placeholder="(555) 000-0000"
                         className="mt-2 w-full rounded-2xl border border-[#173b36]/15 bg-[#f9fbfa] px-4 py-3.5 font-normal outline-none transition focus:border-[#176b5b]"
                       />
@@ -586,6 +599,8 @@ export default function Home() {
                         required
                         name="email"
                         type="email"
+                        autoComplete="email"
+                        maxLength={254}
                         placeholder="demo@example.invalid"
                         className="mt-2 w-full rounded-2xl border border-[#173b36]/15 bg-[#f9fbfa] px-4 py-3.5 font-normal outline-none transition focus:border-[#176b5b]"
                       />
@@ -626,12 +641,13 @@ export default function Home() {
                     <textarea
                       name="message"
                       rows={4}
+                      maxLength={500}
                       placeholder="Demo note only. Do not include medical information."
                       className="mt-2 w-full resize-none rounded-2xl border border-[#173b36]/15 bg-[#f9fbfa] px-4 py-3.5 font-normal outline-none transition focus:border-[#176b5b]"
                     />
                   </label>
 
-                  {submitError && <p role="alert" className="mt-5 text-sm text-red-700">{submitError}</p>}
+                  {submitError && <p role="alert" aria-live="assertive" className="mt-5 text-sm text-red-700">{submitError}</p>}
                   <button
                     type="submit"
                     disabled={submitting}
@@ -682,7 +698,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer id="contact" className="bg-[#102c28] text-white">
+      <footer id="contact" className="scroll-mt-28 bg-[#102c28] text-white">
         <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
           <div className="grid gap-10 border-b border-white/10 pb-12 md:grid-cols-2 lg:grid-cols-4">
             <div>
